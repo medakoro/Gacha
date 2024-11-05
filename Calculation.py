@@ -41,14 +41,14 @@ while input_powerup >= 0:
 
             if (result <= 51) and (last_result == False):
                 #すり抜け
-                print("[!X]",input_chance/1000,"[%]が当選がすり抜けた")
+                print("\033[44m[!X]",input_chance/1000,"[%]が当選がすり抜けた")
                 #回数加算
                 count_passing += 1
                 #すり抜けが発生したため次回は必ず当選
                 last_result = True
 
             else:
-                print("[!]",input_chance/1000,"[%]が当選")
+                print("\033[41m[!]",input_chance/1000,"[%]が当選")
                 count_correct += 1
                 input_powerup -= 1
                 #当選したため次回不明
@@ -65,14 +65,14 @@ while input_powerup >= 0:
 
                 if (result <= 51) and (last_result == False):
                     #すり抜け
-                    print("[T!X]",input_chance/1000,"[%]が90天井で当選がすり抜けた")
+                    print("\033[42m[T!X]",input_chance/1000,"[%]が90天井で当選がすり抜けた")
                     #回数加算
                     count_passing += 1
                     #すり抜けが発生したため次回は必ず当選
                     last_result = True
 
                 else:
-                    print("[T!]",input_chance/1000,"[%]が90天井で当選")
+                    print("\033[43m[T!]",input_chance/1000,"[%]が90天井で当選")
                     count_correct += 1
                     input_powerup -= 1
                     #当選したため次回不明
@@ -81,12 +81,12 @@ while input_powerup >= 0:
             #天井ではない
             else:
                 #未当選
-                print("[X] 未当選")
+                print("\033[40m[X] 未当選")
                 count_failure += 1
                 #残天井を減算
                 roof += 1
 
-print("集計終了 | 必要ガチャ回数:",count,"回 10連換算:",count/10,"回 すり抜け回数:",count_passing,"回 当選回数:",count_correct,"回 天井回数:",count_roof,"回")
+print("\033[49m集計終了 | 必要ガチャ回数:",count,"回 10連換算:",count/10,"回 すり抜け回数:",count_passing,"回 当選回数:",count_correct,"回 天井回数:",count_roof,"回")
 #ポリクローム(モノクローム計算) 1回あたり160ポリクローム必要
 need_polychrome = 160 * count
 #必要課金額(12000円で6480ポリクローム)
