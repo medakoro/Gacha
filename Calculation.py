@@ -1,5 +1,6 @@
 #imports
 import random
+import math
 
 #思考回数
 count = 0
@@ -17,6 +18,8 @@ count_failure = 0
 roof = 0
 count_roof = 0
 last_result = False
+need_polychrome = 0
+need_money = 0
 
 #凸の数だけ繰り返す
 while input_powerup >= 0:
@@ -81,5 +84,9 @@ while input_powerup >= 0:
                 #残天井を減算
                 roof += 1
 
-print("集計終了 | 必要ガチャ回数:",count," 10連換算:",count/10," すり抜け回数:",count_passing,"当選回数:",count_correct,"天井回数:",count_roof)
-
+print("集計終了 | 必要ガチャ回数:",count,"回 10連換算:",count/10,"回 すり抜け回数:",count_passing,"回 当選回数:",count_correct,"回 天井回数:",count_roof,"回")
+#ポリクローム(モノクローム計算) 1回あたり160ポリクローム必要
+need_polychrome = 160 * count
+#必要課金額(12000円で6480ポリクローム)
+need_money = 12000 * math.ceil(need_polychrome/6480)
+print("必要ポリクローム:約",need_polychrome,"個 必要課金額:約¥",need_money," 課金回数:約",math.ceil(need_polychrome/6480),"回")
