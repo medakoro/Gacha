@@ -7,7 +7,7 @@ count = -1
 #確率0.6%
 input_chance = 6
 #凸回数
-input_powerup = input("凸回数")
+input_powerup = int(input("凸回数"))
 print("カウント:リセット完了 確率:",input_chance/1000,"[%]",input_powerup,"[凸]")
 print("計算を開始します")
 
