@@ -6,17 +6,80 @@ count = 0
 #確率0.6%
 input_chance = 6
 #凸回数
-input_powerup = input("何回の凸をしますか?")
+input_powerup = 0
 print("カウント:リセット完了 確率:",input_chance/1000,"[%]",input_powerup,"[凸]")
-
 print("計算を開始します")
-#天井180回まで繰り返す
-while count < 180:
-    #1000(0.1%単位で計算)
-    result = random.randint(0,1000)
-    #当選時
-    if result <= input_chance:
-        input("[!]",input_chance/1000,"[%]が当選")
-    else:
-        input("[X] 未当選")
-    count += 1
+
+#宣言
+count_passing = 0
+count_correct = 0
+count_failure = 0
+roof = 0
+count_roof = 0
+last_result = False
+
+#凸の数だけ繰り返す
+while input_powerup >= 0:
+        #回数増加
+        count += 1
+        #1000(0.1%単位で計算)
+        result = random.randint(0,1000)
+
+        #当選時
+        if result <= input_chance:
+            #S級キャラ確定なので天井をリセット
+            roof = 0
+            count_roof += 1
+
+            #すり抜け判定
+            result = random.randint(0,100)
+
+            if (result <= 51) and (last_result == False):
+                #すり抜け
+                print("[!X]",input_chance/1000,"[%]が当選がすり抜けた")
+                #回数加算
+                count_passing += 1
+                #すり抜けが発生したため次回は必ず当選
+                last_result = True
+
+            else:
+                print("[!]",input_chance/1000,"[%]が当選")
+                count_correct += 1
+                input_powerup -= 1
+                #当選したため次回不明
+                last_result = False
+
+        else:
+            #天井判定(90連)
+            if roof >= 90:
+                #すり抜け判定
+                result = random.randint(0,100)
+                count_roof += 1
+                #天井をリセット
+                roof = 0
+
+                if (result <= 51) and (last_result == False):
+                    #すり抜け
+                    print("[T!X]",input_chance/1000,"[%]が90天井で当選がすり抜けた")
+                    #回数加算
+                    count_passing += 1
+                    #すり抜けが発生したため次回は必ず当選
+                    last_result = True
+
+                else:
+                    print("[T!]",input_chance/1000,"[%]が90天井で当選")
+                    count_correct += 1
+                    input_powerup -= 1
+                    #当選したため次回不明
+                    last_result = False
+
+            #天井ではない
+            else:
+                #未当選
+                print("[X] 未当選")
+                count_failure += 1
+                #残天井を減算
+                roof += 1
+
+print("集計終了 | 必要ガチャ回数:",count," 10連換算:",count/10," すり抜け回数:",count_passing,"当選回数:",count_correct,"天井回数:",count_roof)
+
