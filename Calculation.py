@@ -2,8 +2,8 @@
 import random
 import math
 
-#思考回数
-count = 0
+#試行回数(-1にしないとバグる)
+count = -1
 #確率0.6%
 input_chance = 6
 #凸回数
@@ -25,13 +25,15 @@ need_money = 0
 while input_powerup >= 0:
         #回数増加
         count += 1
+        #debug
+        print(count)
         #1000(0.1%単位で計算)
         result = random.randint(0,1000)
 
         #当選時
         if result <= input_chance:
             #S級キャラ確定なので天井をリセット
-            roof = 0
+            roof = 1
             count_roof += 1
 
             #すり抜け判定
@@ -59,7 +61,7 @@ while input_powerup >= 0:
                 result = random.randint(0,100)
                 count_roof += 1
                 #天井をリセット
-                roof = 0
+                roof = 1
 
                 if (result <= 51) and (last_result == False):
                     #すり抜け
