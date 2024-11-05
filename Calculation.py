@@ -25,8 +25,6 @@ need_money = 0
 while input_powerup >= 0:
         #回数増加
         count += 1
-        #debug
-        print(count)
         #1000(0.1%単位で計算)
         result = random.randint(0,1000)
 
