@@ -1,6 +1,7 @@
 #imports
 import random
 import math
+import sys
 
 #試行回数(-1にしないとバグる)
 count = -1
@@ -8,6 +9,9 @@ count = -1
 input_chance = 6
 #凸回数
 input_powerup = int(input("凸回数"))
+if input_powerup < 0 or input_powerup > 6:
+    print("エラー!:不明な凸回数:",input_powerup)
+    sys.exit()
 print("カウント:リセット完了 確率:",input_chance/1000,"[%]",input_powerup,"[凸]")
 print("計算を開始します")
 
