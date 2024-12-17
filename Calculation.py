@@ -18,7 +18,7 @@ input_count_simulate = int(input("何回繰り返しますか?"))
 
 #-1回ってなんやねん
 if input_count_simulate < 0:
-    print("エラー!:不明な凸回数:",input_powerup)
+    print("エラー!不明な繰り返す回数:",input_count_simulate)
     sys.exit()
 
 #空白なら1回として
